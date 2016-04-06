@@ -2,36 +2,47 @@
   {
     "label": "Engineering",
     "_id": 1,
-    "description": "An indicator of the players engineering talent shield + engines"
+    "description": "An indicator of the players engineering talent shield + engines",
+    "maxValue" : 10,
+    "minValue" : 0
   },
 
   {
     "label": "Communication",
     "_id": 2,
-    "description": "Ships communiaction systems"
+    "description": "Ships communication systems",
+    "maxValue" : 10,
+    "minValue" : 0
   },
 
   {
     "label": "Language",
     "_id": 3,
-    "description": "Ability to communicate with aliens"
+    "description": "Ability to communicate with aliens",
+    "maxValue" : 10,
+    "minValue" : 0
   },
   {
     "label": "Gunner",
     "_id": 4,
-    "description": "Operation of ships weapon systems"
+    "description": "Operation of ships weapon systems",
+    "maxValue" : 10,
+    "minValue" : 0
   },
 
   {
     "label": "Pilot",
     "_id": 5,
-    "description": "Piloting"
+    "description": "Piloting",
+    "maxValue" : 10,
+    "minValue" : 0
   },
 
   {
     "label": "Skill Critical",
     "_id": 7,
     "description": "You're a lucky bastard... sometimes",
-    "allowNegative": true
+    "maxValue" : 10,
+    "minValue" : -5
   }
 ]
