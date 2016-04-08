@@ -44,16 +44,15 @@ app.post('/login', function(req, res){
 
   var sent_token = false;
   // Gotta be a better to do this
-  for (i = 0; i < accounts.length; i++) {
-    if (accounts[i].email    === req.body.email &&
-        accounts[i].password === req.body.password){
 
-          // Issue a token here.
-          var token = jwt.sign(accounts[i], server_params.token_secret, { expiresInMinutes: 60*5 });
-          res.json({token: token});
-          sent_token = true;
-        }
+
+  if (accounts.find(acc => acc.email === req.body.email && acc.password === req.body.password)){
+    // Issue a token here.
+    var token = jwt.sign(accounts[i], server_params.token_secret, { expiresInMinutes: 60*5 });
+    res.json({token: token});
+    sent_token = true;
   }
+
   if (!sent_token) {
     res.json({message: "Invalid Credentials!"});
   }

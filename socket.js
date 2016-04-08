@@ -17,10 +17,10 @@ module.exports = function (httpServer) {
     "use strict";
     var debug = require('debug')('ss-thermisto:server');
     var io = require('socket.io')(httpServer);
-    io.set('authorization', socketioJwt.authorize({
+    /*io.set('authorization', socketioJwt.authorize({
       secret: server_params.token_secret,
       handshake: true
-    }));
+    }));*/
     var game = require('./lib/game')(io);
     return io;
 };
