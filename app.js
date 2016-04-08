@@ -6,6 +6,7 @@ var jwt             = require('jsonwebtoken');
 var cors            = require('cors');
 var app             = express();
 const server_params = require('./config/server.json');
+var accounts   = require('./lib/accountsStore');
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
@@ -17,18 +18,6 @@ app.use(cors());
 
 // Temporary stuff
 
-var accounts = [
-  {
-    _id:   1234,
-    email: "account1@accounts.com",
-    password: "pass1"
-  },
-  {
-    _id:   1235,
-    email: "account2@accounts.com",
-    password: "pass2"
-  }
-]
 var jwtSecret = "ApplesAndOranges";
 
 app.post('/login', function(req, res){
@@ -45,11 +34,13 @@ app.post('/login', function(req, res){
   var sent_token = false;
   // Gotta be a better to do this
 
-
-  if (accounts.find(acc => acc.email === req.body.email && acc.password === req.body.password)){
+  if (account = accounts.find(acc => acc.email === req.body.email && acc.password === req.body.password)){
     // Issue a token here.
-    var token = jwt.sign(accounts[i], server_params.token_secret, { expiresInMinutes: 60*5 });
-    res.json({token: token});
+    var token = jwt.sign(account, server_params.token_secret, { expiresInMinutes: 60*5 });
+    res.json({
+      token: token,
+      email: account.email
+    });
     sent_token = true;
   }
 
