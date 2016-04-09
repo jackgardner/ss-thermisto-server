@@ -29,23 +29,19 @@ app.post('/login', function(req, res){
   }
   */
 
-  if (!req.body.email || !req.body.password) return;
+  if (!req.body.email || !req.body.password) return res.json({ type: 'AUTH_ERROR', error: 'Invalid credentials'});
 
-  var sent_token = false;
-  // Gotta be a better to do this
-
-  if (account = accounts.find(acc => acc.email === req.body.email && acc.password === req.body.password)){
+  var account = accounts.find(acc => acc.email === req.body.email && acc.password === req.body.password);
+  if (account){
     // Issue a token here.
     var token = jwt.sign(account, server_params.token_secret, { expiresInMinutes: 60*5 });
     res.json({
+      type: 'USER_LOGIN',
       token: token,
       email: account.email
     });
-    sent_token = true;
-  }
-
-  if (!sent_token) {
-    res.json({message: "Invalid Credentials!"});
+  } else {
+    res.json({ type: 'AUTH_ERROR', error: "Invalid Credentials!"});
   }
 })
 
