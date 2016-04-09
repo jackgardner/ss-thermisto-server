@@ -1,7 +1,6 @@
 // const config = require ('./config');
 const enums = require ('./lib/enums');
-const socketioJwt = require('socketio-jwt');
-const server_params = require('./config/server.json');
+
 
 const gameState = {
     state: enums.GAME_STATE.LOBBY,

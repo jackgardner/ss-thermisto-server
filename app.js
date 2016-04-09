@@ -6,7 +6,6 @@ var jwt             = require('jsonwebtoken');
 var cors            = require('cors');
 var app             = express();
 const server_params = require('./config/server.json');
-var accounts   = require('./lib/accountsStore');
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
@@ -18,6 +17,18 @@ app.use(cors());
 
 // Temporary stuff
 
+var accounts = [
+  {
+    _id:   1234,
+    email: "account1@accounts.com",
+    password: "pass1"
+  },
+  {
+    _id:   1235,
+    email: "account2@accounts.com",
+    password: "pass2"
+  }
+]
 var jwtSecret = "ApplesAndOranges";
 
 app.post('/login', function(req, res){
@@ -28,6 +39,7 @@ app.post('/login', function(req, res){
     password: Something
   }
   */
+
 
   if (!req.body.email || !req.body.password) return res.json({ type: 'AUTH_ERROR', error: 'Invalid credentials'});
 
